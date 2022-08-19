@@ -6,9 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/DIY_Money/_Scenes/GameLoad.unity
+    path: Assets/AllAboutLips/_Scenes/GameLoad.unity
     guid: a93a87b051c15fb4ab6e845a810ef01d
   - enabled: 1
-    path: Assets/DIY_Money/_Scenes/MoneyDIY.unity
+    path: Assets/AllAboutLips/_Scenes/GameScene.unity
     guid: e38e20566f677f54586cc2e84e9f94ae
   m_configObjects: {}
