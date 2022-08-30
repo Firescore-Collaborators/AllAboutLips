@@ -6,6 +6,8 @@ namespace CW.Common
 	/// <summary>If your scene is massive, then you can add this component to an empty GameObject. Any components that support this feature will add GameObjects to this as children and transform them in a way that makes them render properly using a floating origin system.</summary>
 	[ExecuteInEditMode]
 	[DefaultExecutionOrder(-100)]
+	[HelpURL(CwShared.HelpUrlPrefix + "CwRoot")]
+	[AddComponentMenu(CwShared.ComponentMenuPrefix + "Root")]
 	public class CwRoot : MonoBehaviour
 	{
 		private static List<CwRoot> instances = new List<CwRoot>();

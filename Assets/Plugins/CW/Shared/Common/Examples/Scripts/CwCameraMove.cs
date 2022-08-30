@@ -28,6 +28,11 @@ namespace CW.Common
 		[System.NonSerialized]
 		private Vector3 remainingDelta;
 
+		protected virtual void Start()
+		{
+			CwInputManager.EnsureThisComponentExists();
+		}
+
 		protected virtual void Update()
 		{
 			if (listen == true)

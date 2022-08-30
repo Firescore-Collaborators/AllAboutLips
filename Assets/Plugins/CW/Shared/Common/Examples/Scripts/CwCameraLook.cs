@@ -28,6 +28,11 @@ namespace CW.Common
 		[System.NonSerialized]
 		private Quaternion remainingDelta = Quaternion.identity;
 
+		protected virtual void Start()
+		{
+			CwInputManager.EnsureThisComponentExists();
+		}
+
 		protected virtual void OnDisable()
 		{
 			//oldMousePositionSet = false;

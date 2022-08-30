@@ -11,7 +11,7 @@ public class PaintManager : MonoBehaviour
     public GameObject paintButtonPrefab;
     public GameObject holdIcon;
 
-    public P3dPaintSphere paintSphere;
+    public LipstickData lipstick;
     public List<GameObject> paintButton = new List<GameObject>();
 
     LevelObject levelObject;
@@ -50,6 +50,7 @@ public class PaintManager : MonoBehaviour
             paintButtonObj.onClick.AddListener(() =>
             {
                 ChangeColor(paintButtonObj.GetComponent<Image>().color);
+                lipstick.gameObject.SetActive(true);
             });
             paintButton.Add(paintButtonObj.gameObject);
         }
@@ -61,6 +62,7 @@ public class PaintManager : MonoBehaviour
             Destroy(paintButton[i]);
         }
         paintButton.Clear();
+        lipstick.gameObject.SetActive(false);
     }
 
     void ChangeColor(Color color)
@@ -70,7 +72,7 @@ public class PaintManager : MonoBehaviour
         //Change particle color
 
         //Change paint color
-        paintSphere.Color = color;
+        lipstick.SetColor(color);
     }
 
     void Update()
@@ -83,12 +85,14 @@ public class PaintManager : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             scrollRect.gameObject.SetActive(true);
+            lipstick.OnMouseState(false);
         }
 
         if (Input.GetMouseButtonDown(0))
         {
             scrollRect.gameObject.SetActive(false);
             holdIcon.SetActive(false);
+            lipstick.OnMouseState(true);
         }
     }
 }

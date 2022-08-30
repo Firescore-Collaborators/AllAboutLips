@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: PaintStepSO
   m_EditorClassIdentifier: 
   stepType: 1
-  cameraName: Default
+  cameraName: PaintCamera
   blendSpeed: 1
   colors: {fileID: 11400000, guid: 4079e713681d46647a65b5ef776c8a56, type: 2}

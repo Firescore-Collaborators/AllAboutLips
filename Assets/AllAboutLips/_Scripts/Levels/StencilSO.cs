@@ -9,7 +9,7 @@ public class StencilMask
     public Texture2D stencilMask;
 }
 
-[CreateAssetMenu(fileName = "StencilSO", menuName = "Money/StencilSO")]
+[CreateAssetMenu(fileName = "StencilSO", menuName = "AllAboutLip/StencilSO")]
 public class StencilSO : ScriptableObject
 {
     public List<StencilMask> stencilMasks = new List<StencilMask>();

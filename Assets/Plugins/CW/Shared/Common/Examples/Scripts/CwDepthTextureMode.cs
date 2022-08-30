@@ -33,9 +33,11 @@ namespace CW.Common
 #if UNITY_EDITOR
 namespace CW.Common
 {
+	using UnityEditor;
 	using TARGET = CwDepthTextureMode;
 
-	[UnityEditor.CustomEditor(typeof(TARGET))]
+	[CanEditMultipleObjects]
+	[CustomEditor(typeof(TARGET))]
 	public class CwDepthTextureMode_Editor : CwEditor
 	{
 		protected override void OnInspector()

@@ -23,7 +23,7 @@ public class ObjectFollowMouseVertical : MonoBehaviour
         ray = cam.ScreenPointToRay(Input.mousePosition);
 
         newPoint = ray.GetPoint(distance);
-        if (valueZ != 0)
+        if (valueZ == 0)
         {
             valueZ = transform.position.z;
         }

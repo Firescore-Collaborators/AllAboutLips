@@ -11,7 +11,7 @@ public class StencilManager : MonoBehaviour
     public Transform paintPanel;
     public ScrollRect scrollRect;
     public GameObject paintButtonPrefab;
-    public GameObject paintSpray;
+    public LipstickData lipstick;
     public GameObject button;
     public GameObject stencil;
     LevelObject levelObject;
@@ -29,7 +29,7 @@ public class StencilManager : MonoBehaviour
         Start();
         Init();
         SetStencil();
-        ApplyMask();
+        //ApplyMask();
     }
 
     void OnDisable()
@@ -43,7 +43,7 @@ public class StencilManager : MonoBehaviour
         SpawnButtons();
         scrollRect.horizontalNormalizedPosition = 0;
         Canvas.ForceUpdateCanvases();
-        AddOverlay();
+        //AddOverlay();
         // levelObject.paintable.enabled = false;
         // levelObject.paintable2.enabled = true;
         // levelObject.paintable.Deactivate();
@@ -56,12 +56,12 @@ public class StencilManager : MonoBehaviour
         {
             Button paintButtonObj = Instantiate(paintButtonPrefab, paintPanel).GetComponent<Button>();
             Color color = ((StencilStepSo)GameManager.Instance.CurrentStep).colors.colors[i];
-            paintButtonObj.transform.GetChild(0).GetComponent<Image>().color = ((StencilStepSo)GameManager.Instance.CurrentStep).colors.colors[i];
+            paintButtonObj.GetComponent<Image>().color = color;
             //paintButtonObj.transform.GetChild(1).GetComponent<Image>().color = ((StencilStepSo)GameManager.Instance.CurrentStep).colors.colors[i];
             paintButtonObj.onClick.AddListener(() =>
             {
-                ChangeColor(paintButtonObj.transform.GetChild(0).GetComponent<Image>().color);
-                paintSpray.SetActive(true);
+                ChangeColor(paintButtonObj.GetComponent<Image>().color);
+                lipstick.gameObject.SetActive(true);
             });
             paintButton.Add(paintButtonObj.gameObject);
         }
@@ -82,6 +82,8 @@ public class StencilManager : MonoBehaviour
     void Reset()
     {
         //levelObject.paintable2.LocalMaskTexture = null;
+        levelObject.lipsPaintable.LocalMaskTexture = null;
+        lipstick.gameObject.SetActive(false);
         for (int i = 0; i < paintButton.Count; i++)
         {
             Destroy(paintButton[i]);
@@ -92,22 +94,12 @@ public class StencilManager : MonoBehaviour
     void ChangeColor(Color color)
     {
         //Change spray can color
-        MeshRenderer mesh = paintSpray.GetComponent<MeshRenderer>();
-        Material[] mats = mesh.materials;
-        mats[0].color = color;
-        mesh.materials = mats;
+        
 
         //Change particle color
-        ToggleParticles toggleParticles = paintSpray.GetComponent<ToggleParticles>();
-        GameObject particles = toggleParticles.Target.gameObject;
-        ParticleSystem.MainModule settings = particles.GetComponent<ParticleSystem>().main;
-        settings.startColor = color;
 
         //Change paint color
-        for (int i = 0; i < toggleParticles.paintSpheres.Count; i++)
-        {
-            toggleParticles.paintSpheres[i].Color = color;
-        }
+        lipstick.SetColor(color);
         //paintSphere.Color = color;
     }
     void ApplyMask()
@@ -122,25 +114,26 @@ public class StencilManager : MonoBehaviour
             Destroy(stencil);
         }
         StencilMask stencilMask = ((StencilStepSo)GameManager.Instance.CurrentStep).stencilSO.stencilMasks[currentStencil];
+        levelObject.lipsPaintable.LocalMaskTexture = stencilMask.paintMask;
         //stencil = Instantiate(levelObject.stencil);
         //stencil.transform.parent = levelObject.stencil.transform.parent;
         //stencil.transform.position = levelObject.stencil.transform.position;
-        StencilData stencilData = stencil.GetComponent<StencilData>();
-        P3dPaintableTexture stencilPaint = stencilData.stencilPaint.GetComponent<P3dPaintableTexture>();
-        P3dPaintableTexture stencilBone = stencilData.stencilBone.GetComponent<P3dPaintableTexture>();
+        //StencilData stencilData = stencil.GetComponent<StencilData>();
+        //P3dPaintableTexture stencilPaint = stencilData.stencilPaint.GetComponent<P3dPaintableTexture>();
+        //P3dPaintableTexture stencilBone = stencilData.stencilBone.GetComponent<P3dPaintableTexture>();
         //stencilMesh.material.mainTexture = stencilMask.stencilMask;
-        stencilPaint.Texture = stencilMask.stencilMask;
-        stencilBone.Texture = stencilMask.stencilMask;
-        stencilPaint.LocalMaskTexture = stencilMask.stencilMask;
-        stencilBone.LocalMaskTexture = stencilMask.stencilMask;
+        // stencilPaint.Texture = stencilMask.stencilMask;
+        // stencilBone.Texture = stencilMask.stencilMask;
+        // stencilPaint.LocalMaskTexture = stencilMask.stencilMask;
+        // stencilBone.LocalMaskTexture = stencilMask.stencilMask;
         //levelObject.paintable2.LocalMaskTexture = stencilMask.paintMask;
-        stencil.SetActive(true);
-        stencilData.stencilBone.SetActive(true);
-        stencilData.anim.Play("Apply");
+        // stencil.SetActive(true);
+        // stencilData.stencilBone.SetActive(true);
+        // stencilData.anim.Play("Apply");
         Timer.Delay(1f, () =>
         {
-            stencilData.stencilBone.SetActive(false);
-            stencilData.stencilPaint.SetActive(true);
+            // stencilData.stencilBone.SetActive(false);
+            // stencilData.stencilPaint.SetActive(true);
         });
         //stencil.GetComponent<Animator>().Play("Apply");
     }
@@ -148,14 +141,14 @@ public class StencilManager : MonoBehaviour
     void RemoveStencil(System.Action callback = null)
     {
         //stencil.GetComponent<Animator>().Play("Remove");
-        StencilData stencilData = stencil.GetComponent<StencilData>();
-        stencilData.stencilBone.SetActive(true);
-        stencilData.stencilPaint.SetActive(false);
-        stencilData.stencilBone.GetComponent<Renderer>().materials = stencilData.stencilPaint.GetComponent<MeshRenderer>().materials;
-        stencil.GetComponent<Animator>().Play("Remove");
+        //StencilData stencilData = stencil.GetComponent<StencilData>();
+        //stencilData.stencilBone.SetActive(true);
+        //stencilData.stencilPaint.SetActive(false);
+        //stencilData.stencilBone.GetComponent<Renderer>().materials = stencilData.stencilPaint.GetComponent<MeshRenderer>().materials;
+        //stencil.GetComponent<Animator>().Play("Remove");
         Timer.Delay(1.0f, () =>
         {
-            stencil.SetActive(false);
+            //stencil.SetActive(false);
             callback();
         });
     }
@@ -195,11 +188,13 @@ public class StencilManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             scrollRect.gameObject.SetActive(false);
+            lipstick.OnMouseState(true);
         }
 
         if (Input.GetMouseButtonUp(0))
         {
             scrollRect.gameObject.SetActive(true);
+            lipstick.OnMouseState(false);
         }
 
     }

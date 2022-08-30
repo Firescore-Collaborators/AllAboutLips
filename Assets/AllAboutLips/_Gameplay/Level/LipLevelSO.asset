@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0ff9463c1de2c0408f8ab7c52cb97b5, type: 3}
   m_Name: LipLevelSO
   m_EditorClassIdentifier: 
-  levelObject: {fileID: 6437736285584840734, guid: 7a42a53e558c76b498ef9a235b6bb5a4,
+  levelObject: {fileID: 594400308334214936, guid: bfc73f9a13c8e0641825ebab72538185,
     type: 3}
   levelType: 1
   steps:
   - {fileID: 11400000, guid: deeb2b1e1e4eae040b28c49019d71c22, type: 2}
+  - {fileID: 11400000, guid: 3b94deec15205a54b98790b2d26f0666, type: 2}
