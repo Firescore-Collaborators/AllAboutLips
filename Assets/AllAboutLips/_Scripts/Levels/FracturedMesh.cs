@@ -22,7 +22,7 @@ public class FracturedMesh : MonoBehaviour
         {
             GameObject child = parent.transform.GetChild(i).gameObject;
             Rigidbody rb = child.AddComponent<Rigidbody>();
-            child.AddComponent<BoxCollider>();
+            child.AddComponent<SphereCollider>();
             fracturedMesh.Add(rb);
             rb.isKinematic = true;
             rb.useGravity = false;

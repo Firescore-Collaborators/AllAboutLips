@@ -20,10 +20,16 @@ public class LaserController : MonoBehaviour
 
     void Raycast()
     {
-        if (Physics.Raycast(transform.position, -transform.forward, out hit, 100f, layerMask))
+        if (Physics.Raycast(transform.position, (transform.forward * -1).normalized, out hit, 100f, layerMask))
         {
             Fly(hit.collider.GetComponent<Rigidbody>());
         }
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawRay(transform.position,((transform.forward * -1).normalized) * 100);
     }
 
     void Fly(Rigidbody other)
