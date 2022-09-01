@@ -9,6 +9,7 @@ public static class StepStateMachine
         {StepType.painting, "PaintStepState"},
         {StepType.levelEnd, "LevelCompleteStepState"},
         {StepType.stencil, "StencilStepState"},
+        {StepType.clean,"CleanStepState"}
     };
 
 

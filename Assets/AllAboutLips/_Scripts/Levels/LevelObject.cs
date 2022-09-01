@@ -5,4 +5,10 @@ using PaintIn3D;
 public class LevelObject : MonoBehaviour
 {
     public P3dPaintableTexture lipsPaintable;
+    public FracturedMesh fracturedMesh;
+
+    void Start()
+    {
+        fracturedMesh.Init();
+    }
 }
