@@ -15,6 +15,10 @@ public class ObjectFollowMouseVertical : MonoBehaviour
     RaycastHit hit;
     public float valueZ;
     public Vector3 offset;
+    public bool follow, isHover;
+    public float hoverSpeed = .1f;
+    public float paintValue, hoverValue;
+    bool isHeld, isReached;
 
     private void OnEnable()
     {
@@ -35,9 +39,17 @@ public class ObjectFollowMouseVertical : MonoBehaviour
         if (distance == 0)
             distance = Vector3.Distance(cam.GetComponent<Transform>().position, transform.position);
         defValue = transform.position;
+        hoverValue = valueZ;
     }
     private void Update()
     {
+        SetInput();
+        ObjectHover();
+        if (!follow)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, valueZ);
+            return;
+        }
 
         ray = cam.ScreenPointToRay(Input.mousePosition);
 
@@ -64,6 +76,47 @@ public class ObjectFollowMouseVertical : MonoBehaviour
 
         Gizmos.color = Color.red;
         Gizmos.DrawSphere(transform.position + offset, 0.01f);
+    }
+
+    void SetInput()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            isHeld = true;
+            isReached = false;
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            isHeld = false;
+            isReached = false;
+        }
+    }
+
+    void ObjectHover()
+    {
+        if (!isHover) { return; }
+        if (isHeld)
+        {
+            if (isReached) { return; }
+
+            valueZ -= Time.deltaTime * hoverSpeed;
+            if (valueZ <= paintValue)
+            {
+                isReached = true;
+                valueZ = paintValue;
+            }
+        }
+        else
+        {
+            if (isReached) { return; }
+
+            valueZ += Time.deltaTime * hoverSpeed;
+            if (valueZ >= hoverValue)
+            {
+                isReached = true;
+                valueZ = hoverValue;
+            }
+        }
     }
 
 }
