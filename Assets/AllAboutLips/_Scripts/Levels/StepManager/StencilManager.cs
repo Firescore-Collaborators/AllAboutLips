@@ -95,7 +95,7 @@ public class StencilManager : MonoBehaviour
     void ChangeColor(Color color)
     {
         //Change spray can color
-        
+
 
         //Change particle color
 
@@ -114,7 +114,7 @@ public class StencilManager : MonoBehaviour
         P3dPaintableTexture stencilPaintable = stencil.GetComponent<P3dPaintableTexture>();
         stencilPaintable.LocalMaskTexture = stencilMask.stencilMask;
         stencilPaintable.Texture = stencilMask.stencilAlbedo;
-        stencil.GetComponent<Renderer>().material.SetTexture("_Albedo",stencilMask.stencilAlbedo);
+        stencil.GetComponent<Renderer>().material.SetTexture("_Albedo", stencilMask.stencilAlbedo);
         levelObject.lipsPaintable.LocalMaskTexture = stencilMask.paintMask;
         stencil.SetActive(true);
         stencilPaintable.Deactivate();
@@ -144,15 +144,16 @@ public class StencilManager : MonoBehaviour
 
     void RemoveStencil(System.Action callback = null)
     {
+        stencil.GetComponent<Animator>().Play("LipsStencil_GoingOut");
         //stencil.GetComponent<Animator>().Play("Remove");
         //StencilData stencilData = stencil.GetComponent<StencilData>();
         //stencilData.stencilBone.SetActive(true);
         //stencilData.stencilPaint.SetActive(false);
         //stencilData.stencilBone.GetComponent<Renderer>().materials = stencilData.stencilPaint.GetComponent<MeshRenderer>().materials;
         //stencil.GetComponent<Animator>().Play("Remove");
-        stencil.SetActive(false);
-        Timer.Delay(1.0f, () =>
+        Timer.Delay(2.0f, () =>
         {
+            stencil.SetActive(false);
             //stencil.SetActive(false);
             callback();
         });
