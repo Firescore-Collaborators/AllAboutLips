@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class CleanManager : MonoBehaviour
 {
-    public static CleanManager instance;
     LevelObject levelObject;
     public LaserController laserController;
     public GameObject laserParticle;
@@ -15,17 +14,6 @@ public class CleanManager : MonoBehaviour
 
     bool held;
 
-    void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else
-        {
-            Destroy(this);
-        }
-    }
 
     void Start()
     {
@@ -66,7 +54,7 @@ public class CleanManager : MonoBehaviour
 
         progressBar.fillAmount = Remap.remap(levelObject.fracturedMesh.fracturedMesh.Count, 0, particleMaxCount, 1, 0);
 
-        if (progressBar.fillAmount > 0.98f)
+        if (progressBar.fillAmount >= 1f)
         {
             GameManager.Instance.NextStep();
         }

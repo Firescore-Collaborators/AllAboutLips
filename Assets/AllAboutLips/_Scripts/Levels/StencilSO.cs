@@ -6,6 +6,7 @@ using UnityEngine;
 public class StencilMask
 {
     public Texture2D paintMask;
+    public Texture2D stencilAlbedo;
     public Texture2D stencilMask;
 }
 

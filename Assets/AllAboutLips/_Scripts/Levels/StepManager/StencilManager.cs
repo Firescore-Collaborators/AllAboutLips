@@ -23,6 +23,7 @@ public class StencilManager : MonoBehaviour
     private void Start()
     {
         levelObject = GameManager.Instance.levelObject;
+        stencil = levelObject.stencil;
     }
     void OnEnable()
     {
@@ -109,12 +110,15 @@ public class StencilManager : MonoBehaviour
 
     void SetStencil()
     {
-        if (stencil != null)
-        {
-            Destroy(stencil);
-        }
         StencilMask stencilMask = ((StencilStepSo)GameManager.Instance.CurrentStep).stencilSO.stencilMasks[currentStencil];
+        P3dPaintableTexture stencilPaintable = stencil.GetComponent<P3dPaintableTexture>();
+        stencilPaintable.LocalMaskTexture = stencilMask.stencilMask;
+        stencilPaintable.Texture = stencilMask.stencilAlbedo;
+        stencil.GetComponent<Renderer>().material.SetTexture("_Albedo",stencilMask.stencilAlbedo);
         levelObject.lipsPaintable.LocalMaskTexture = stencilMask.paintMask;
+        stencil.SetActive(true);
+        stencilPaintable.Deactivate();
+        stencilPaintable.Activate();
         //stencil = Instantiate(levelObject.stencil);
         //stencil.transform.parent = levelObject.stencil.transform.parent;
         //stencil.transform.position = levelObject.stencil.transform.position;
@@ -146,6 +150,7 @@ public class StencilManager : MonoBehaviour
         //stencilData.stencilPaint.SetActive(false);
         //stencilData.stencilBone.GetComponent<Renderer>().materials = stencilData.stencilPaint.GetComponent<MeshRenderer>().materials;
         //stencil.GetComponent<Animator>().Play("Remove");
+        stencil.SetActive(false);
         Timer.Delay(1.0f, () =>
         {
             //stencil.SetActive(false);

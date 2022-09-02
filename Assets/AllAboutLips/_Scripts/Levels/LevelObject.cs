@@ -6,6 +6,7 @@ public class LevelObject : MonoBehaviour
 {
     public P3dPaintableTexture lipsPaintable;
     public FracturedMesh fracturedMesh;
+    public GameObject stencil;
 
     void Start()
     {

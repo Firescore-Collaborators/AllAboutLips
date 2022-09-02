@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stencilMasks:
   - paintMask: {fileID: 2800000, guid: 63c2daac2d1a644479bfda35b449e0dd, type: 3}
-    stencilMask: {fileID: 0}
+    stencilAlbedo: {fileID: 2800000, guid: 93c951044e4cb3242bc4e4d472715913, type: 3}
+    stencilMask: {fileID: 2800000, guid: de8ee7d0aa7cc934099cfa65927ad227, type: 3}
   - paintMask: {fileID: 2800000, guid: 56c0bf962efd57546879eca351737986, type: 3}
-    stencilMask: {fileID: 0}
+    stencilAlbedo: {fileID: 2800000, guid: 8574285c8cf7fc84e8385ce85c393045, type: 3}
+    stencilMask: {fileID: 2800000, guid: 8d4cfc644b7975c4e8f77676c556da25, type: 3}

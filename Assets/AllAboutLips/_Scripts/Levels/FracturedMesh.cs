@@ -14,7 +14,7 @@ public class FracturedMesh : MonoBehaviour
             AddToListInChild(transform.GetChild(i));
         }
 
-        CleanManager.instance.particleMaxCount = fracturedMesh.Count;
+        (GameManager.Instance.GetComponent<CleanStepState>().stepManager.GetComponent<CleanManager>().particleMaxCount) = fracturedMesh.Count;
     }
 
     void AddToListInChild(Transform parent)
