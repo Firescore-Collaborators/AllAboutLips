@@ -1682,6 +1682,7 @@ MonoBehaviour:
   force: 1
   time: 0.3
   torque: 1
+  raycastRadius: 0.01
 --- !u!1 &393938939
 GameObject:
   m_ObjectHideFlags: 0
@@ -4593,7 +4594,7 @@ PrefabInstance:
     - target: {fileID: 4762156582298237386, guid: 0eb0b40b59678b241a016dfe4223c12c,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4762156582298237387, guid: 0eb0b40b59678b241a016dfe4223c12c,
         type: 3}
@@ -7489,7 +7490,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1460002758
 Transform:
   m_ObjectHideFlags: 0
@@ -15567,31 +15568,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1373005544027744353, guid: 0717b9a944cde384d8ab7593a1ef4c7f,
-        type: 3}
-      propertyPath: valueZ
-      value: 11.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 1373005544027744353, guid: 0717b9a944cde384d8ab7593a1ef4c7f,
-        type: 3}
-      propertyPath: isHover
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1373005544027744353, guid: 0717b9a944cde384d8ab7593a1ef4c7f,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1373005544027744353, guid: 0717b9a944cde384d8ab7593a1ef4c7f,
-        type: 3}
-      propertyPath: hoverSpeed
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1373005544027744353, guid: 0717b9a944cde384d8ab7593a1ef4c7f,
-        type: 3}
-      propertyPath: paintValue
-      value: 11.5
       objectReference: {fileID: 0}
     - target: {fileID: 1373005544027744366, guid: 0717b9a944cde384d8ab7593a1ef4c7f,
         type: 3}
