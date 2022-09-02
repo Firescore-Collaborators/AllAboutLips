@@ -12,7 +12,7 @@ public class LaserController : MonoBehaviour
     public float time = 0.3f;
     public float torque = 1f;
     public float raycastRadius = 0.3f;
-
+    public bool toRayCast;
     void Update()
     {
         Raycast();
@@ -24,7 +24,9 @@ public class LaserController : MonoBehaviour
         // {
         //     Fly(hit.collider.GetComponent<Rigidbody>());
         // }
-        if(Physics.SphereCast(transform.position,raycastRadius,(transform.forward * -1).normalized,out hit,100f,layerMask))
+
+        if (!toRayCast) { return; }
+        if (Physics.SphereCast(transform.position, raycastRadius, (transform.forward * -1).normalized, out hit, 100f, layerMask))
         {
             Fly(hit.collider.GetComponent<Rigidbody>());
         }
@@ -33,7 +35,7 @@ public class LaserController : MonoBehaviour
     void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawRay(transform.position,((transform.forward * -1).normalized) * 100);
+        Gizmos.DrawRay(transform.position, ((transform.forward * -1).normalized) * 100);
         Gizmos.DrawSphere(transform.position, raycastRadius);
     }
 

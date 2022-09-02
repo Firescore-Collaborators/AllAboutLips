@@ -8,10 +8,13 @@ public class FracturedMesh : MonoBehaviour
 
     public void Init()
     {
+        fracturedMesh.Clear();
         for (int i = 0; i < transform.childCount; i++)
         {
             AddToListInChild(transform.GetChild(i));
         }
+
+        CleanManager.instance.particleMaxCount = fracturedMesh.Count;
     }
 
     void AddToListInChild(Transform parent)
