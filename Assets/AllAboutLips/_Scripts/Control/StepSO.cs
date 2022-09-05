@@ -7,7 +7,9 @@ public enum StepType
     clean = 0,
     painting = 1,
     stencil = 2,
-    levelEnd = 3,
+    sucker = 3,
+    levelEnd,
+
 }
 public class StepSO : ScriptableObject
 {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[CreateAssetMenu(fileName = "CleanStepSO", menuName = "AllAboutLip/CleanStepSO", order = 2)]
+[CreateAssetMenu(fileName = "CleanStepSO", menuName = "AllAboutLip/StepSO/CleanStepSO", order = 2)]
 public class CleanStepSO : StepSO
 {
 

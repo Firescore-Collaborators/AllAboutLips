@@ -7,7 +7,7 @@ TagManager:
   - Cancel
   - Scale
   - Body
-  - StampPad
+  - SuckerPlace
   layers:
   - Default
   - TransparentFX
@@ -17,8 +17,8 @@ TagManager:
   - UI
   - CleanParticles
   - Sticker
-  - 
-  - 
+  - ObjectFollow
+  - ObjectMove
   - 
   - 
   - 

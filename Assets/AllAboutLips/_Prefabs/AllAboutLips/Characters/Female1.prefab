@@ -14918,7 +14918,28 @@ SkinnedMeshRenderer:
   - {fileID: 6849099469543411578}
   - {fileID: 101740919867515673}
   - {fileID: 4339205843277517748}
-  m_BlendShapeWeights: []
+  m_BlendShapeWeights:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
   m_RootBone: {fileID: 7942939379064793174}
   m_AABB:
     m_Center: {x: 0, y: 5.029352, z: -0.07073486}
@@ -29785,6 +29806,8 @@ MonoBehaviour:
   lipsPaintable: {fileID: 3289250155440591384}
   fracturedMesh: {fileID: 1125754042}
   stencil: {fileID: 4583100265888334904}
+  skinRend: {fileID: 2128043006261723598}
+  objectRotate: {fileID: 9209758308827176349}
 --- !u!1 &4762156582421001907
 GameObject:
   m_ObjectHideFlags: 0
