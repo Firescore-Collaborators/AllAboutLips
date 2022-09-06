@@ -15,7 +15,7 @@ public class SuckerManager : MonoBehaviour
     public float suckAmount = 20f;
     public float suckSpeed = 1f;
     bool canSuck, suckEnable;
-    public int blendKey = 19;
+    public int swollblendKey = 19, poutBlendkey = 20, pullBlendKey = 21;
     int loopCount;
     void OnEnable()
     {
@@ -50,8 +50,9 @@ public class SuckerManager : MonoBehaviour
     void OnSuck()
     {
         canSuck = false;
-        float currentWeight = levelObject.skinRend.GetBlendShapeWeight(blendKey);
+        float currentWeight = levelObject.skinRend.GetBlendShapeWeight(swollblendKey);
         LerpFloatValueBehaviour lerpFloat = suckerTool.AddComponent<LerpFloatValueBehaviour>();
+        //Tool
         lerpFloat.LerpValue(100, 0, suckSpeed / 2, (value) =>
         {
             suckerRend.SetBlendShapeWeight(0, value);
@@ -60,12 +61,16 @@ public class SuckerManager : MonoBehaviour
             lerpFloat.LerpValue(0, 100, suckSpeed / 2, (value) =>
             {
                 suckerRend.SetBlendShapeWeight(0, value);
+            },()=>
+            {
+                Destroy(lerpFloat);
             });
         });
+        //Lips
         LerpFloatValue.instance.LerpValue(currentWeight, currentWeight + suckAmount, suckSpeed, (value) =>
         {
-            levelObject.skinRend.SetBlendShapeWeight(blendKey, value);
-            progress.fillAmount = Remap.remap(levelObject.skinRend.GetBlendShapeWeight(blendKey), 0, 100, 0, 1);
+            levelObject.skinRend.SetBlendShapeWeight(swollblendKey, value);
+            progress.fillAmount = Remap.remap(levelObject.skinRend.GetBlendShapeWeight(swollblendKey), 0, 100, 0, 1);
         }, () =>
         {
             canSuck = true;
@@ -77,10 +82,24 @@ public class SuckerManager : MonoBehaviour
 
     }
 
+    public void Pout()
+    {
+        LerpFloatValue.instance.LerpValue(0, 100, 0.75f, (value) =>
+        {
+            levelObject.skinRend.SetBlendShapeWeight(poutBlendkey, value);
+        }, () =>
+        {
+            LerpFloatValue.instance.LerpValue(100, 0, 0.75f, (value) =>
+            {
+                levelObject.skinRend.SetBlendShapeWeight(poutBlendkey, value);
+            });
+        });
+    }
     void RemoveSucker()
     {
         suckEnable = false;
         stepHeader.text = "Remove the pucker";
+        suckerTool.GetComponent<SuckerTool>().checkForPull = true;
         suckerTool.GetComponent<ObjectFollowCollider>().enabled = true;
         progress.transform.parent.gameObject.SetActive(false);
     }
@@ -96,19 +115,36 @@ public class SuckerManager : MonoBehaviour
     {
         stepHeader.text = "";
         loopCount = 0;
-        LipsExaggerate();
+        LipsPull();
+        Timer.Delay(0, () =>
+        {
+            LipsExaggerate();
+        });
     }
 
+    void LipsPull()
+    {
+        LerpFloatValue.instance.LerpValue(0, 100, 0.1f, (value) =>
+        {
+            levelObject.skinRend.SetBlendShapeWeight(pullBlendKey, value);
+        }, () =>
+        {
+            LerpFloatValue.instance.LerpValue(100, 0, 0.1f, (value) =>
+            {
+                levelObject.skinRend.SetBlendShapeWeight(pullBlendKey, value);
+            });
+        });
+    }
     void LipsExaggerate()
     {
         LerpFloatValue.instance.LerpValue(100, 130, suckSpeed / 4, (value) =>
         {
-            levelObject.skinRend.SetBlendShapeWeight(blendKey, value);
+            levelObject.skinRend.SetBlendShapeWeight(swollblendKey, value);
         }, () =>
         {
             LerpFloatValue.instance.LerpValue(130, 100, suckSpeed / 4, (value) =>
             {
-                levelObject.skinRend.SetBlendShapeWeight(blendKey, value);
+                levelObject.skinRend.SetBlendShapeWeight(swollblendKey, value);
             }, () =>
             {
                 if (loopCount == 2)
