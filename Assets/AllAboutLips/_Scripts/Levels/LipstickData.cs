@@ -8,7 +8,7 @@ public class LipstickData : MonoBehaviour
     public List<Renderer> rends = new List<Renderer>();
     public ObjectFollowMouseVertical objectFollow;
     public ObjectRotateInterpolate rotate;
-
+    public ParticleSystem particle;
     void Start()
     {
         SetColorFromRend();
@@ -33,16 +33,21 @@ public class LipstickData : MonoBehaviour
         {
             rends[j].material.color = color;
         }
+        if (particle == null) return;
+        ParticleSystem.MainModule particles = particle.main;
+        particles.startColor = color;
     }
 
     public void OnMouseState(bool state)
     {
         objectFollow.follow = state;
         rotate.enabled = state;
-        for(int i = 0; i < paintSpheres.Count; i++)
+        for (int i = 0; i < paintSpheres.Count; i++)
         {
             paintSpheres[i].gameObject.SetActive(state);
         }
+        if(particle == null) return;
+        particle.gameObject.SetActive(state);
     }
 
 }
