@@ -9,13 +9,13 @@ public class SuckerManager : MonoBehaviour
     LevelObject levelObject;
     public GameObject suckerTool;
     public SkinnedMeshRenderer suckerRend;
-    public Transform suckerStartPos,suckFinalPos;
+    public Transform suckerStartPos, suckFinalPos;
     public Image progress;
     public Text stepHeader;
     public float suckAmount = 20f;
     public float suckSpeed = 1f;
     bool canSuck, suckEnable;
-    public int swollblendKey = 19, poutBlendkey = 20, pullBlendKey = 21;
+    public int swollblendKey = 19, poutBlendkey = 20, pullBlendKey = 21, expressionBlendKey = 8, blinkBlendKey = 1;
     int loopCount;
 
     void OnEnable()
@@ -30,6 +30,7 @@ public class SuckerManager : MonoBehaviour
         stepHeader.text = "Place the pucker";
         suckerTool.transform.position = suckerStartPos.position;
         LerpObjectLocalRotation.instance.LerpObject(levelObject.objectRotate.transform, Quaternion.Euler(Vector3.zero), 0.3f);
+        InvokeRepeating("Blink", 2, 5);
         //levelObject.objectRotate.transform.localRotation = Quaternion.Euler(Vector3.zero);
     }
 
@@ -69,6 +70,27 @@ public class SuckerManager : MonoBehaviour
                 Destroy(lerpFloat);
             });
         });
+
+        LerpFloatValueBehaviour lerpFloat1 = levelObject.skinRend.gameObject.AddComponent<LerpFloatValueBehaviour>();
+        lerpFloat1.LerpValue(0, 100, suckSpeed / 2, (value) =>
+        {
+            levelObject.skinRend.SetBlendShapeWeight(expressionBlendKey, value);
+        }, () =>
+        {
+            Timer.Delay(0.5f, () =>
+            {
+                lerpFloat1.LerpValue(100, 0, suckSpeed / 2, (value) =>
+                {
+                    levelObject.skinRend.SetBlendShapeWeight(expressionBlendKey, value);
+                }, () =>
+                {
+                    Destroy(lerpFloat1);
+                });
+            });
+
+        });
+
+
         //Lips
         LerpFloatValue.instance.LerpValue(currentWeight, currentWeight + suckAmount, suckSpeed, (value) =>
         {
@@ -83,6 +105,24 @@ public class SuckerManager : MonoBehaviour
             }
         });
 
+    }
+
+    public void Blink()
+    {
+        LerpFloatValueBehaviour lerpFloat = levelObject.skinRend.gameObject.AddComponent<LerpFloatValueBehaviour>();
+        lerpFloat.LerpValue(0, 100, 0.5f, (value) =>
+        {
+            levelObject.skinRend.SetBlendShapeWeight(blinkBlendKey, value);
+        }, () =>
+        {
+            Timer.Delay(0.1f, () =>
+            {
+                lerpFloat.LerpValue(100, 0, 0.3f, (value) =>
+                {
+                    levelObject.skinRend.SetBlendShapeWeight(blinkBlendKey, value);
+                });
+            });
+        });
     }
 
     public void Pout()
