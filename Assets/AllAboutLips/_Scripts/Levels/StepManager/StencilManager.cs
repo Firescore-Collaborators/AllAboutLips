@@ -57,11 +57,11 @@ public class StencilManager : MonoBehaviour
         {
             Button paintButtonObj = Instantiate(paintButtonPrefab, paintPanel).GetComponent<Button>();
             Color color = ((StencilStepSo)GameManager.Instance.CurrentStep).colors.colors[i];
-            paintButtonObj.GetComponent<Image>().color = color;
+            paintButtonObj.transform.GetChild(0).GetComponent<Image>().color = color;
             //paintButtonObj.transform.GetChild(1).GetComponent<Image>().color = ((StencilStepSo)GameManager.Instance.CurrentStep).colors.colors[i];
             paintButtonObj.onClick.AddListener(() =>
             {
-                ChangeColor(paintButtonObj.GetComponent<Image>().color);
+                ChangeColor(paintButtonObj.transform.GetChild(0).GetComponent<Image>().color);
                 lipstick.gameObject.SetActive(true);
             });
             paintButton.Add(paintButtonObj.gameObject);
