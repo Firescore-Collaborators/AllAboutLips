@@ -12,6 +12,7 @@ public class SuckerManager : MonoBehaviour
     public Transform suckerStartPos, suckFinalPos;
     public Image progress;
     public Text stepHeader;
+    public GameObject particleEfx;
     public float suckAmount = 20f;
     public float suckSpeed = 1f;
     bool canSuck, suckEnable;
@@ -132,6 +133,11 @@ public class SuckerManager : MonoBehaviour
             levelObject.skinRend.SetBlendShapeWeight(poutBlendkey, value);
         }, () =>
         {
+            particleEfx.SetActive(true);
+            Timer.Delay(1f, () =>
+            {
+                particleEfx.SetActive(false);
+            });
             // LerpFloatValue.instance.LerpValue(100, 0, 0.75f, (value) =>
             // {
             //     levelObject.skinRend.SetBlendShapeWeight(poutBlendkey, value);
@@ -168,6 +174,10 @@ public class SuckerManager : MonoBehaviour
         LipsPull();
         Timer.Delay(0, () =>
         {
+            Timer.Delay(1f, () =>
+            {
+                particleEfx.SetActive(false);
+            });
             LipsExaggerate();
         });
     }
@@ -187,6 +197,8 @@ public class SuckerManager : MonoBehaviour
     }
     void LipsExaggerate()
     {
+        particleEfx.SetActive(true);
+
         LerpFloatValue.instance.LerpValue(100, 130, suckSpeed / 4, (value) =>
         {
             levelObject.skinRend.SetBlendShapeWeight(swollblendKey, value);

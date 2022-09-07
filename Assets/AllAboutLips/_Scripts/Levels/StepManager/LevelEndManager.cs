@@ -23,7 +23,7 @@ public class LevelEndManager : MonoBehaviour
     void PlayCharacterAnim()
     {
         DisableCharacterRig();
-        levelObject.characterAnim.Play("Dance");
+        levelObject.characterAnim.CrossFade("Dance",1f);
     }
 
     void DisableCharacterRig()
