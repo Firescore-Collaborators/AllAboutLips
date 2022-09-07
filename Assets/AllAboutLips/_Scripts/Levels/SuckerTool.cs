@@ -13,6 +13,8 @@ public class SuckerTool : MonoBehaviour
     Vector3 lastMousePos, dragPos;
     SuckerManager suckerManager;
     LevelObject levelObject;
+    public Transform poutPos;
+
     void Start()
     {
         suckerManager = GameManager.Instance.gameObject.GetComponent<SuckerStepState>().stepManager.GetComponent<SuckerManager>();
@@ -26,7 +28,7 @@ public class SuckerTool : MonoBehaviour
             checkForEnter = false;
             GetComponent<ObjectFollowCollider>().Disable();
             GameManager.Instance.GetComponent<SuckerStepState>().stepManager.GetComponent<SuckerManager>().Pout();
-            LerpObjectPosition.instance.LerpObject(transform, other.transform.GetChild(0).position, 1, () =>
+            LerpObjectPosition.instance.LerpObject(transform, poutPos.position, 1, () =>
             {
                 GameManager.Instance.GetComponent<SuckerStepState>().stepManager.GetComponent<SuckerManager>().SuckStart();
             });
@@ -54,6 +56,7 @@ public class SuckerTool : MonoBehaviour
 
         currentPullPercent += Time.deltaTime * pullAddAmount;
         levelObject.skinRend.SetBlendShapeWeight(suckerManager.pullBlendKey, currentPullPercent);
+
         if (currentPullPercent > 100)
         {
             print("pulled");

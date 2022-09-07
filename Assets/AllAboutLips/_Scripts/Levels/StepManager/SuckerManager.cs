@@ -9,7 +9,7 @@ public class SuckerManager : MonoBehaviour
     LevelObject levelObject;
     public GameObject suckerTool;
     public SkinnedMeshRenderer suckerRend;
-    public Transform suckerStartPos;
+    public Transform suckerStartPos,suckFinalPos;
     public Image progress;
     public Text stepHeader;
     public float suckAmount = 20f;
@@ -17,6 +17,7 @@ public class SuckerManager : MonoBehaviour
     bool canSuck, suckEnable;
     public int swollblendKey = 19, poutBlendkey = 20, pullBlendKey = 21;
     int loopCount;
+
     void OnEnable()
     {
         Init();
@@ -28,6 +29,8 @@ public class SuckerManager : MonoBehaviour
         levelObject.objectRotate.enabled = false;
         stepHeader.text = "Place the pucker";
         suckerTool.transform.position = suckerStartPos.position;
+        LerpObjectLocalRotation.instance.LerpObject(levelObject.objectRotate.transform, Quaternion.Euler(Vector3.zero), 0.3f);
+        //levelObject.objectRotate.transform.localRotation = Quaternion.Euler(Vector3.zero);
     }
 
     void Update()
@@ -61,7 +64,7 @@ public class SuckerManager : MonoBehaviour
             lerpFloat.LerpValue(0, 100, suckSpeed / 2, (value) =>
             {
                 suckerRend.SetBlendShapeWeight(0, value);
-            },()=>
+            }, () =>
             {
                 Destroy(lerpFloat);
             });
@@ -84,19 +87,26 @@ public class SuckerManager : MonoBehaviour
 
     public void Pout()
     {
-        LerpFloatValue.instance.LerpValue(0, 100, 0.75f, (value) =>
+        LerpFloatValue.instance.LerpValue(0, 100, 1, (value) =>
         {
             levelObject.skinRend.SetBlendShapeWeight(poutBlendkey, value);
         }, () =>
         {
-            LerpFloatValue.instance.LerpValue(100, 0, 0.75f, (value) =>
-            {
-                levelObject.skinRend.SetBlendShapeWeight(poutBlendkey, value);
-            });
+            // LerpFloatValue.instance.LerpValue(100, 0, 0.75f, (value) =>
+            // {
+            //     levelObject.skinRend.SetBlendShapeWeight(poutBlendkey, value);
+            // });
+            // LerpObjectPosition.instance.LerpObject(suckerTool.transform,pos.position,0.75f);            
         });
     }
     void RemoveSucker()
     {
+        LerpFloatValue.instance.LerpValue(100, 0, 0.25f, (value) =>
+        {
+            levelObject.skinRend.SetBlendShapeWeight(poutBlendkey, value);
+        });
+        LerpObjectPosition.instance.LerpObject(suckerTool.transform, suckFinalPos.position, 0.25f);
+
         suckEnable = false;
         stepHeader.text = "Remove the pucker";
         suckerTool.GetComponent<SuckerTool>().checkForPull = true;
