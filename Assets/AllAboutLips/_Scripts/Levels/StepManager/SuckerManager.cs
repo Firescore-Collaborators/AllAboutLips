@@ -27,6 +27,8 @@ public class SuckerManager : MonoBehaviour
     void Init()
     {
         levelObject = GameManager.Instance.levelObject;
+        levelObject.stencil.SetActive(false);
+        levelObject.fracturedMesh.gameObject.SetActive(false);
         levelObject.objectRotate.enabled = false;
         stepHeader.text = "Place the pucker";
         suckerTool.transform.position = suckerStartPos.position;

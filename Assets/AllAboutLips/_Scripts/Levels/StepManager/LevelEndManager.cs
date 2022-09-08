@@ -15,7 +15,7 @@ public class LevelEndManager : MonoBehaviour
     void Init()
     {
         levelObject = GameManager.Instance.levelObject;
-        MainCameraController.instance.SetCurrentCamera("PaintCamera");
+        MainCameraController.instance.SetCurrentCamera("Default");
         Timer.Delay(1f, () =>
         {
             confetti.SetActive(true);
@@ -23,18 +23,18 @@ public class LevelEndManager : MonoBehaviour
 
         Timer.Delay(1.5f, () =>
         {
+            PlayCharacterAnim();
             confetti.SetActive(false);
             sparkles.SetActive(true);
             Timer.Delay(3f, () =>
             {
                 sparkles.SetActive(false);
             });
-            LerpFloatValue.instance.LerpValue(0, 60, 0.7f, (var) =>
-            {
-                levelObject.skinRend.SetBlendShapeWeight(smileBlendKey, var);
-                GameManager.Instance.gameObject.GetComponent<SuckerStepState>().stepManager.GetComponent<SuckerManager>().CancelInvoke();
-            });
-            //PlayCharacterAnim();
+            // LerpFloatValue.instance.LerpValue(0, 60, 0.7f, (var) =>
+            // {
+            //     levelObject.skinRend.SetBlendShapeWeight(smileBlendKey, var);
+            //     GameManager.Instance.gameObject.GetComponent<SuckerStepState>().stepManager.GetComponent<SuckerManager>().CancelInvoke();
+            // });
         });
     }
 
