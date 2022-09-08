@@ -45,8 +45,8 @@ public class LaserController : MonoBehaviour
         fracturedMesh.fracturedMesh.Remove(other);
         other.gameObject.layer = 0;
         Transform dir = directions[Random.Range(0, directions.Length)];
-        other.AddForce(dir.up * force, ForceMode.Impulse);
-        other.AddTorque((dir.up + dir.right) * torque, ForceMode.Impulse);
+        other.AddForce(dir.forward * force, ForceMode.Impulse);
+        other.AddTorque((dir.forward + dir.right) * torque, ForceMode.Impulse);
         Timer.Delay(time, () =>
         {
             other.useGravity = true;
