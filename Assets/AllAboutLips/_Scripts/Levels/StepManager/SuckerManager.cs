@@ -75,14 +75,14 @@ public class SuckerManager : MonoBehaviour
         });
 
         LerpFloatValueBehaviour lerpFloat1 = levelObject.skinRend.gameObject.AddComponent<LerpFloatValueBehaviour>();
-        lerpFloat1.LerpValue(0, 100, suckSpeed / 2, (value) =>
+        lerpFloat1.LerpValue(0, 100, suckSpeed / 4, (value) =>
         {
             levelObject.skinRend.SetBlendShapeWeight(expressionBlendKey, value);
         }, () =>
         {
-            Timer.Delay(0.5f, () =>
+            Timer.Delay(0.2f, () =>
             {
-                lerpFloat1.LerpValue(100, 0, suckSpeed / 2, (value) =>
+                lerpFloat1.LerpValue(100, 0, suckSpeed / 4, (value) =>
                 {
                     levelObject.skinRend.SetBlendShapeWeight(expressionBlendKey, value);
                 }, () =>
@@ -113,14 +113,14 @@ public class SuckerManager : MonoBehaviour
     public void Blink()
     {
         LerpFloatValueBehaviour lerpFloat = levelObject.skinRend.gameObject.AddComponent<LerpFloatValueBehaviour>();
-        lerpFloat.LerpValue(0, 100, 0.5f, (value) =>
+        lerpFloat.LerpValue(0, 100, 0.3f, (value) =>
         {
             levelObject.skinRend.SetBlendShapeWeight(blinkBlendKey, value);
         }, () =>
         {
             Timer.Delay(0.1f, () =>
             {
-                lerpFloat.LerpValue(100, 0, 0.3f, (value) =>
+                lerpFloat.LerpValue(100, 0, 0.1f, (value) =>
                 {
                     levelObject.skinRend.SetBlendShapeWeight(blinkBlendKey, value);
                 });

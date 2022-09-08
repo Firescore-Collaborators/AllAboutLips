@@ -43,7 +43,7 @@ public class MagicBeamStatic : MonoBehaviour
         RemoveBeam();
     }
 
-    void FixedUpdate()
+    void Update()
     {
         if (beam) //Updates the beam
         {
