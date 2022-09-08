@@ -5,6 +5,8 @@ using UnityEngine;
 public class LevelEndManager : MonoBehaviour
 {
     LevelObject levelObject;
+    public GameObject confetti, sparkles;
+    public int smileBlendKey = 10;
     void OnEnable()
     {
         Init();
@@ -13,17 +15,33 @@ public class LevelEndManager : MonoBehaviour
     void Init()
     {
         levelObject = GameManager.Instance.levelObject;
-        MainCameraController.instance.SetCurrentCamera("Default");
-        Timer.Delay(2f, () =>
+        MainCameraController.instance.SetCurrentCamera("PaintCamera");
+        Timer.Delay(1f, () =>
         {
-            PlayCharacterAnim();
+            confetti.SetActive(true);
+        });
+
+        Timer.Delay(1.5f, () =>
+        {
+            confetti.SetActive(false);
+            sparkles.SetActive(true);
+            Timer.Delay(3f, () =>
+            {
+                sparkles.SetActive(false);
+            });
+            LerpFloatValue.instance.LerpValue(0, 60, 0.7f, (var) =>
+            {
+                levelObject.skinRend.SetBlendShapeWeight(smileBlendKey, var);
+                GameManager.Instance.gameObject.GetComponent<SuckerStepState>().stepManager.GetComponent<SuckerManager>().CancelInvoke();
+            });
+            //PlayCharacterAnim();
         });
     }
 
     void PlayCharacterAnim()
     {
         DisableCharacterRig();
-        levelObject.characterAnim.CrossFade("Dance",1f);
+        levelObject.characterAnim.CrossFade("Dance", 1f);
     }
 
     void DisableCharacterRig()

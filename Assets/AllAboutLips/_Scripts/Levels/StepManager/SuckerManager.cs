@@ -12,7 +12,7 @@ public class SuckerManager : MonoBehaviour
     public Transform suckerStartPos, suckFinalPos;
     public Image progress;
     public Text stepHeader;
-    public GameObject particleEfx;
+    public GameObject particleEfx, heartPfx;
     public float suckAmount = 20f;
     public float suckSpeed = 1f;
     bool canSuck, suckEnable;
@@ -174,6 +174,7 @@ public class SuckerManager : MonoBehaviour
         LipsPull();
         Timer.Delay(0, () =>
         {
+            particleEfx.SetActive(true);
             Timer.Delay(1f, () =>
             {
                 particleEfx.SetActive(false);
@@ -197,7 +198,6 @@ public class SuckerManager : MonoBehaviour
     }
     void LipsExaggerate()
     {
-        particleEfx.SetActive(true);
 
         LerpFloatValue.instance.LerpValue(100, 130, suckSpeed / 4, (value) =>
         {
@@ -211,6 +211,11 @@ public class SuckerManager : MonoBehaviour
             {
                 if (loopCount == 2)
                 {
+                    heartPfx.SetActive(true);
+                    Timer.Delay(2f, () =>
+                    {
+                        heartPfx.SetActive(false);
+                    });
                     LevelEnd();
                 }
                 else
