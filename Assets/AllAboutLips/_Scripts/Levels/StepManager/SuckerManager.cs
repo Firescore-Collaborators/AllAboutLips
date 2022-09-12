@@ -6,6 +6,7 @@ using NaughtyAttributes;
 
 public class SuckerManager : MonoBehaviour
 {
+    public Gradient skinColor;
     LevelObject levelObject;
     public GameObject suckerTool;
     public SkinnedMeshRenderer suckerRend;
@@ -18,6 +19,7 @@ public class SuckerManager : MonoBehaviour
     bool canSuck, suckEnable;
     public int swollblendKey = 19, poutBlendkey = 20, pullBlendKey = 21, expressionBlendKey = 8, blinkBlendKey = 1;
     int loopCount;
+    public bool isFailVideo;
 
     void OnEnable()
     {
@@ -56,6 +58,7 @@ public class SuckerManager : MonoBehaviour
     [Button]
     void OnSuck()
     {
+        CancelInvoke();
         canSuck = false;
         float currentWeight = levelObject.skinRend.GetBlendShapeWeight(swollblendKey);
         LerpFloatValueBehaviour lerpFloat = suckerTool.AddComponent<LerpFloatValueBehaviour>();
@@ -73,6 +76,25 @@ public class SuckerManager : MonoBehaviour
                 Destroy(lerpFloat);
             });
         });
+        // Eyes close
+        LerpFloatValueBehaviour lerpFloat2 = levelObject.skinRend.gameObject.AddComponent<LerpFloatValueBehaviour>();
+        lerpFloat2.LerpValue(0, 100, 0.3f, (value) =>
+        {
+            levelObject.skinRend.SetBlendShapeWeight(blinkBlendKey, value);
+        }, () =>
+        {
+            Timer.Delay(0.6f, () =>
+            {
+                lerpFloat2.LerpValue(100, 0, 0.2f, (value) =>
+                {
+                    levelObject.skinRend.SetBlendShapeWeight(blinkBlendKey, value);
+                }, () =>
+                {
+                    Destroy(lerpFloat2);
+                    InvokeRepeating("Blink", 3, 5);
+                });
+            });
+        });
 
         LerpFloatValueBehaviour lerpFloat1 = levelObject.skinRend.gameObject.AddComponent<LerpFloatValueBehaviour>();
         lerpFloat1.LerpValue(0, 100, suckSpeed / 4, (value) =>
@@ -80,7 +102,7 @@ public class SuckerManager : MonoBehaviour
             levelObject.skinRend.SetBlendShapeWeight(expressionBlendKey, value);
         }, () =>
         {
-            Timer.Delay(0.2f, () =>
+            Timer.Delay(0.6f, () =>
             {
                 lerpFloat1.LerpValue(100, 0, suckSpeed / 4, (value) =>
                 {
@@ -99,6 +121,10 @@ public class SuckerManager : MonoBehaviour
         {
             levelObject.skinRend.SetBlendShapeWeight(swollblendKey, value);
             progress.fillAmount = Remap.remap(levelObject.skinRend.GetBlendShapeWeight(swollblendKey), 0, 100, 0, 1);
+            if (isFailVideo)
+            {
+                levelObject.skinRend.materials[0].color = skinColor.Evaluate(progress.fillAmount);
+            }
         }, () =>
         {
             canSuck = true;
@@ -123,6 +149,9 @@ public class SuckerManager : MonoBehaviour
                 lerpFloat.LerpValue(100, 0, 0.1f, (value) =>
                 {
                     levelObject.skinRend.SetBlendShapeWeight(blinkBlendKey, value);
+                }, () =>
+                {
+                    Destroy(lerpFloat);
                 });
             });
         });
@@ -174,6 +203,16 @@ public class SuckerManager : MonoBehaviour
         stepHeader.text = "";
         loopCount = 0;
         LipsPull();
+
+        if (isFailVideo)
+        {
+            LerpFloatValueBehaviour lerpFloat = levelObject.skinRend.gameObject.AddComponent<LerpFloatValueBehaviour>();
+            lerpFloat.LerpValue(1, 0, 1f, (var) =>
+            {
+                levelObject.skinRend.materials[0].color = skinColor.Evaluate(var);
+            });
+        }
+
         Timer.Delay(0, () =>
         {
             particleEfx.SetActive(true);

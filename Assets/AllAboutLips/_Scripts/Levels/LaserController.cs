@@ -6,7 +6,7 @@ public class LaserController : MonoBehaviour
 {
     public LayerMask layerMask;
     public Transform[] directions;
-    RaycastHit hit;
+    RaycastHit[] hit;
     public FracturedMesh fracturedMesh;
     public float force = 1f;
     public float time = 0.3f;
@@ -26,10 +26,16 @@ public class LaserController : MonoBehaviour
         // }
 
         if (!toRayCast) { return; }
-        if (Physics.SphereCast(transform.position, raycastRadius, (transform.forward * -1).normalized, out hit, 100f, layerMask))
+        // if (Physics.SphereCast(transform.position, raycastRadius, (transform.forward * -1).normalized, out hit, 100f, layerMask))
+        // {
+        //     Fly(hit.collider.GetComponent<Rigidbody>());
+        // }
+        hit = Physics.SphereCastAll(transform.position, raycastRadius, (transform.forward * -1).normalized, 100f, layerMask);
+        foreach(RaycastHit a in hit)
         {
-            Fly(hit.collider.GetComponent<Rigidbody>());
+            Fly(a.rigidbody);
         }
+
     }
 
     void OnDrawGizmos()
