@@ -5016,7 +5016,7 @@ PrefabInstance:
     - target: {fileID: 4762156582298237386, guid: 0eb0b40b59678b241a016dfe4223c12c,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4762156582298237387, guid: 0eb0b40b59678b241a016dfe4223c12c,
         type: 3}
@@ -10531,6 +10531,7 @@ MonoBehaviour:
   pullBlendKey: 22
   expressionBlendKey: 8
   blinkBlendKey: 1
+  chinSuckBlendKey: 23
   isFailVideo: 0
 --- !u!4 &1827110850
 Transform:

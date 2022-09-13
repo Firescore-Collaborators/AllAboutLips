@@ -17,7 +17,7 @@ public class SuckerManager : MonoBehaviour
     public float suckAmount = 20f;
     public float suckSpeed = 1f;
     bool canSuck, suckEnable;
-    public int swollblendKey = 19, poutBlendkey = 20, pullBlendKey = 21, expressionBlendKey = 8, blinkBlendKey = 1;
+    public int swollblendKey = 19, poutBlendkey = 20, pullBlendKey = 21, expressionBlendKey = 8, blinkBlendKey = 1, chinSuckBlendKey = 24;
     int loopCount;
     public bool isFailVideo;
 
@@ -66,8 +66,8 @@ public class SuckerManager : MonoBehaviour
         CancelInvoke();
         canSuck = false;
         float currentWeight = levelObject.skinRend.GetBlendShapeWeight(swollblendKey);
-        LerpFloatValueBehaviour lerpFloat = suckerTool.AddComponent<LerpFloatValueBehaviour>();
         //Tool
+        LerpFloatValueBehaviour lerpFloat = suckerTool.AddComponent<LerpFloatValueBehaviour>();
         lerpFloat.LerpValue(100, 0, suckSpeed / 2, (value) =>
         {
             suckerRend.SetBlendShapeWeight(0, value);
@@ -81,6 +81,23 @@ public class SuckerManager : MonoBehaviour
                 Destroy(lerpFloat);
             });
         });
+
+        //ChinSuck
+        LerpFloatValueBehaviour lerpFloat3 = levelObject.skinRend.gameObject.AddComponent<LerpFloatValueBehaviour>();
+        lerpFloat3.LerpValue(0, 100, suckSpeed / 2, (value) =>
+        {
+            levelObject.skinRend.SetBlendShapeWeight(chinSuckBlendKey, value);
+        }, () =>
+        {
+            lerpFloat3.LerpValue(100, 0, suckSpeed / 2, (value) =>
+            {
+                levelObject.skinRend.SetBlendShapeWeight(chinSuckBlendKey, value);
+            }, () =>
+            {
+                Destroy(lerpFloat3);
+            });
+        });
+
         // Eyes close
         LerpFloatValueBehaviour lerpFloat2 = levelObject.skinRend.gameObject.AddComponent<LerpFloatValueBehaviour>();
         lerpFloat2.LerpValue(0, 100, 0.3f, (value) =>
