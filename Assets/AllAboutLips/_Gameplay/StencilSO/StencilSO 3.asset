@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 212133a6a29935e4bb3a18e6c94e3fb7, type: 3}
+  m_Name: StencilSO 3
+  m_EditorClassIdentifier: 
+  stencilMasks:
+  - paintMask: {fileID: 2800000, guid: 4c2752af7425b18478a207b16015c9ac, type: 3}
+    stencilAlbedo: {fileID: 2800000, guid: da9ad277c811be548b5b0f0380d0fcbb, type: 3}
+    stencilMask: {fileID: 2800000, guid: e579d8522842c6f439ec63683e844bfd, type: 3}
+  - paintMask: {fileID: 2800000, guid: f219b2c17c50115469b796be13446ba0, type: 3}
+    stencilAlbedo: {fileID: 2800000, guid: 5975dad298c82a74f9990c4d8769dcc9, type: 3}
+    stencilMask: {fileID: 2800000, guid: 6763be5dbae582541bdf1cd003fbd6e4, type: 3}

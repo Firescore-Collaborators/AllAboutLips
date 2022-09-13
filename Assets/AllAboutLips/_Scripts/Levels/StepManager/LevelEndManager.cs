@@ -15,6 +15,7 @@ public class LevelEndManager : MonoBehaviour
     void Init()
     {
         levelObject = GameManager.Instance.levelObject;
+        InvokeRepeating("Blink", 2, 5);
         MainCameraController.instance.SetCurrentCamera("Default");
         Timer.Delay(1f, () =>
         {
@@ -48,5 +49,28 @@ public class LevelEndManager : MonoBehaviour
     {
         levelObject.rig.weight = 0;
     }
+
+     public void Blink()
+    {
+        LerpFloatValueBehaviour lerpFloat = levelObject.skinRend.gameObject.AddComponent<LerpFloatValueBehaviour>();
+        lerpFloat.LerpValue(0, 100, 0.3f, (value) =>
+        {
+            levelObject.skinRend.SetBlendShapeWeight(1, value);
+        }, () =>
+        {
+            Timer.Delay(0.1f, () =>
+            {
+                lerpFloat.LerpValue(100, 0, 0.1f, (value) =>
+                {
+                    levelObject.skinRend.SetBlendShapeWeight(1, value);
+                }, () =>
+                {
+                    Destroy(lerpFloat);
+                });
+            });
+        });
+    }
+
+
 }
 

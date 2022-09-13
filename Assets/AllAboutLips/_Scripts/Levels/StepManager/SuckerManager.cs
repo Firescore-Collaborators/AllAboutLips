@@ -39,6 +39,11 @@ public class SuckerManager : MonoBehaviour
         //levelObject.objectRotate.transform.localRotation = Quaternion.Euler(Vector3.zero);
     }
 
+    void OnDisable()
+    {
+        CancelInvoke();
+        levelObject.objectRotate.enabled = true;
+    }
     void Update()
     {
         if (!suckEnable) { return; }
