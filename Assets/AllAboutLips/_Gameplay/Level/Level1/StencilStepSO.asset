@@ -15,5 +15,5 @@ MonoBehaviour:
   stepType: 2
   cameraName: PaintCamera
   blendSpeed: 1
-  stencilSO: {fileID: 11400000, guid: 85bc7d0ea6195d745821d1f4505d7280, type: 2}
+  stencilSO: {fileID: 11400000, guid: 3a3053673764af842bf1f32dcca6137e, type: 2}
   colors: {fileID: 11400000, guid: 4079e713681d46647a65b5ef776c8a56, type: 2}
