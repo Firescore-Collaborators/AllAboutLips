@@ -163,7 +163,9 @@ public class StencilManager : MonoBehaviour
     public void StepEnd()
     {
         RemoveStencil();
-        Timer.Delay(1.0f, () =>
+        // levelObject.skinRend.materials[1].SetFloat("_SpecularB",0.45f);
+        // levelObject.skinRend.materials[1].SetFloat("_SmoothnessB",0.7f);
+        Timer.Delay(3.0f, () =>
         {
             GameManager.Instance.NextStep();
         });

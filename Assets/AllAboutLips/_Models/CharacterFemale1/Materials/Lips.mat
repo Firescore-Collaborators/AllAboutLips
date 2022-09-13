@@ -8,8 +8,8 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Lips
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
+  m_Shader: {fileID: 4800000, guid: 3789c66fbce53ae458168af435f38199, type: 3}
+  m_ShaderKeywords: _ALPHABLEND_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -19,6 +19,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _BaseColorMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -39,12 +43,28 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Gliter:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GlitterColorMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GlitterMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 899e34ac01f85a344b6e768942880530, type: 3}
+        m_Texture: {fileID: 2800000, guid: 28bf69f9dfa6f04478f9a30021bad7ae, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 2800000, guid: c80297e85edfc594ebf00d3b36fb4c66, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -55,24 +75,64 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SpecularColorMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Stamp:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
     - _BumpScale: 1
+    - _ColorMixVSColor: 0
+    - _ColorNoiseScale: 1
+    - _ColorNoiseStrength: 0
+    - _ColorsFalloff: 0
+    - _ColorsOffset: 0
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
-    - _DstBlend: 0
+    - _DstBlend: 10
+    - _Falloff: 0.02
+    - _GlitterBrightness: 1
+    - _GlitterContrust: 1
+    - _GlitterXScale: 1
+    - _GlitterYScale: 1
     - _GlossMapScale: 1
-    - _Glossiness: 0.568
+    - _Glossiness: 0
     - _GlossyReflections: 1
     - _Metallic: 0
-    - _Mode: 0
+    - _Mode: 2
+    - _NormalScale: 1.5
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _Scale: -2
+    - _SmoothnessA: 0
+    - _SmoothnessB: 0.555
     - _SmoothnessTextureChannel: 0
+    - _Spec2Falloff: -1
+    - _Spec2Mix: 0
+    - _Spec2Shininess: 2
+    - _SpecularA: 0
+    - _SpecularB: 0.183
     - _SpecularHighlights: 1
-    - _SrcBlend: 1
+    - _SrcBlend: 5
+    - _StampVisability: 0
     - _UVSec: 0
-    - _ZWrite: 1
+    - _UseGliter: 0
+    - _ZWrite: 0
+    - __dirty: 1
     m_Colors:
+    - _BasesColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _GlitterColor: {r: 0, g: 0, b: 0, a: 0}
+    - _MixColorA: {r: 1, g: 1, b: 1, a: 0}
+    - _MixColorB: {r: 1, g: 1, b: 1, a: 0}
+    - _MixColorC: {r: 1, g: 1, b: 1, a: 0}
+    - _SpecularColor: {r: 0.8584906, g: 0.8544411, b: 0.8544411, a: 1}
   m_BuildTextureStacks: []

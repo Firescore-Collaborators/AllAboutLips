@@ -46398,7 +46398,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slot:
     Index: 1
-    Name: _MainTex
+    Name: _BaseColorMap
   coord: 0
   group:
     index: 0
@@ -46409,7 +46409,7 @@ MonoBehaviour:
   width: 1024
   height: 1024
   texture: {fileID: 0}
-  color: {r: 1, g: 1, b: 1, a: 1}
+  color: {r: 0.67058825, g: 0.41960785, b: 0.27450982, a: 1}
   format: 0
   mipMaps: 0
   filter: -1
