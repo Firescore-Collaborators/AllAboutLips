@@ -90,6 +90,7 @@ public class StencilManager : MonoBehaviour
             Destroy(paintButton[i]);
         }
         paintButton.Clear();
+        levelObject.objectRotate.enabled = false;
     }
 
     void ChangeColor(Color color)
