@@ -59,13 +59,13 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Armature|BlowKissTwoHand (1)
-      takeName: Armature|BlowKissTwoHand
+      name: Armature|BlowKissOneHand
+      takeName: Armature|BlowKissOneHand
       internalID: 0
       firstFrame: 0
-      lastFrame: 128
+      lastFrame: 137
       wrapMode: 0
-      orientationOffsetY: -5
+      orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0

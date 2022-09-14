@@ -61,6 +61,7 @@ public class SuckerTool : MonoBehaviour
         {
             print("pulled");
             checkForPull = false;
+            OpenEyes();
             LerpFloatValue.instance.LerpValue(100, 0, 0.2f, (value) =>
             {
                 levelObject.skinRend.SetBlendShapeWeight(suckerManager.pullBlendKey, value);
@@ -78,12 +79,42 @@ public class SuckerTool : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             held = true;
+            if(checkForPull)
+            CloseEyes();
         }
 
         if (Input.GetMouseButtonUp(0))
         {
             held = false;
+            if(checkForPull)
+            OpenEyes();
+
         }
         lastMousePos = Input.mousePosition;
+    }
+
+    void CloseEyes()
+    {
+        GameManager.Instance.gameObject.GetComponent<SuckerStepState>().stepManager.GetComponent<SuckerManager>().CancelInvoke();
+        LerpFloatValueBehaviour lerpFloat2 = levelObject.skinRend.gameObject.AddComponent<LerpFloatValueBehaviour>();
+        float startValue = levelObject.skinRend.GetBlendShapeWeight(1);
+        lerpFloat2.LerpValue(startValue, 100, 0.3f, (value) =>
+        {
+            levelObject.skinRend.SetBlendShapeWeight(1, value);
+            levelObject.skinRend.SetBlendShapeWeight(8, value);
+            levelObject.skinRend.SetBlendShapeWeight(23, value);
+        });
+    }
+
+    void OpenEyes()
+    {
+        LerpFloatValueBehaviour lerpFloat2 = levelObject.skinRend.gameObject.AddComponent<LerpFloatValueBehaviour>();
+        float startValue = levelObject.skinRend.GetBlendShapeWeight(1);
+        lerpFloat2.LerpValue(startValue, 0, 0.3f, (value) =>
+        {
+            levelObject.skinRend.SetBlendShapeWeight(1, value);
+            levelObject.skinRend.SetBlendShapeWeight(8, value);
+            levelObject.skinRend.SetBlendShapeWeight(23, value);
+        });
     }
 }

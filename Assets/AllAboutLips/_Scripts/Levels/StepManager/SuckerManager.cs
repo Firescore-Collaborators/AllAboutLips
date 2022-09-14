@@ -141,8 +141,9 @@ public class SuckerManager : MonoBehaviour
         //Lips
         LerpFloatValue.instance.LerpValue(currentWeight, currentWeight + suckAmount, suckSpeed, (value) =>
         {
+            print(currentWeight + suckAmount);
             levelObject.skinRend.SetBlendShapeWeight(swollblendKey, value);
-            progress.fillAmount = Remap.remap(levelObject.skinRend.GetBlendShapeWeight(swollblendKey), 0, 100, 0, 1);
+            progress.fillAmount = Remap.remap(levelObject.skinRend.GetBlendShapeWeight(swollblendKey), 0, 250, 0, 1);
             if (isFailVideo)
             {
                 levelObject.skinRend.materials[0].color = skinColor.Evaluate(progress.fillAmount);
@@ -262,12 +263,12 @@ public class SuckerManager : MonoBehaviour
     void LipsExaggerate()
     {
 
-        LerpFloatValue.instance.LerpValue(100, 130, suckSpeed / 4, (value) =>
+        LerpFloatValue.instance.LerpValue(250, 280, suckSpeed / 4, (value) =>
         {
             levelObject.skinRend.SetBlendShapeWeight(swollblendKey, value);
         }, () =>
         {
-            LerpFloatValue.instance.LerpValue(130, 100, suckSpeed / 4, (value) =>
+            LerpFloatValue.instance.LerpValue(280, 250, suckSpeed / 4, (value) =>
             {
                 levelObject.skinRend.SetBlendShapeWeight(swollblendKey, value);
             }, () =>

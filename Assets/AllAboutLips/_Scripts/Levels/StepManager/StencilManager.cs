@@ -163,6 +163,14 @@ public class StencilManager : MonoBehaviour
     public void StepEnd()
     {
         RemoveStencil();
+        // Timer.Delay(0.5f,()=>
+        // {
+        //      LerpFloatValue.instance.LerpValue(0, 60, 0.7f, (var) =>
+        //     {
+        //         levelObject.skinRend.SetBlendShapeWeight(10, var);
+        //         GameManager.Instance.gameObject.GetComponent<SuckerStepState>().stepManager.GetComponent<SuckerManager>().CancelInvoke();
+        //     });
+        // });
         // levelObject.skinRend.materials[1].SetFloat("_SpecularB",0.45f);
         // levelObject.skinRend.materials[1].SetFloat("_SmoothnessB",0.7f);
         Timer.Delay(3.0f, () =>

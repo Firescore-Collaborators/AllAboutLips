@@ -5,7 +5,7 @@ using UnityEngine;
 public class LevelEndManager : MonoBehaviour
 {
     LevelObject levelObject;
-    public GameObject confetti, sparkles;
+    public GameObject confetti, sparkles,hearts;
     public int smileBlendKey = 10;
     void OnEnable()
     {
@@ -31,11 +31,17 @@ public class LevelEndManager : MonoBehaviour
             {
                 sparkles.SetActive(false);
             });
-            // LerpFloatValue.instance.LerpValue(0, 60, 0.7f, (var) =>
-            // {
-            //     levelObject.skinRend.SetBlendShapeWeight(smileBlendKey, var);
-            //     GameManager.Instance.gameObject.GetComponent<SuckerStepState>().stepManager.GetComponent<SuckerManager>().CancelInvoke();
-            // });
+
+        });
+
+        Timer.Delay(5f, () =>
+        {
+            //MainCameraController.instance.SetCurrentCamera("Final Camera");
+            //     LerpFloatValue.instance.LerpValue(0, 60, 0.7f, (var) =>
+            //     {
+            //         levelObject.skinRend.SetBlendShapeWeight(smileBlendKey, var);
+            //         GameManager.Instance.gameObject.GetComponent<SuckerStepState>().stepManager.GetComponent<SuckerManager>().CancelInvoke();
+            //     });
         });
     }
 
@@ -43,6 +49,15 @@ public class LevelEndManager : MonoBehaviour
     {
         DisableCharacterRig();
         levelObject.characterAnim.CrossFade("Dance", 1f);
+        Timer.Delay(2,()=>
+        {
+            hearts.SetActive(true);
+        });
+
+        Timer.Delay(5f,()=>
+        {
+            hearts.SetActive(false);
+        });
     }
 
     void DisableCharacterRig()
@@ -50,7 +65,7 @@ public class LevelEndManager : MonoBehaviour
         levelObject.rig.weight = 0;
     }
 
-     public void Blink()
+    public void Blink()
     {
         LerpFloatValueBehaviour lerpFloat = levelObject.skinRend.gameObject.AddComponent<LerpFloatValueBehaviour>();
         lerpFloat.LerpValue(0, 100, 0.3f, (value) =>
