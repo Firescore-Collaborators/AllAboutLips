@@ -263,12 +263,12 @@ public class SuckerManager : MonoBehaviour
     void LipsExaggerate()
     {
 
-        LerpFloatValue.instance.LerpValue(250, 280, suckSpeed / 4, (value) =>
+        LerpFloatValue.instance.LerpValue(250, 300, suckSpeed / 4, (value) =>
         {
             levelObject.skinRend.SetBlendShapeWeight(swollblendKey, value);
         }, () =>
         {
-            LerpFloatValue.instance.LerpValue(280, 250, suckSpeed / 4, (value) =>
+            LerpFloatValue.instance.LerpValue(300, 250, suckSpeed / 4, (value) =>
             {
                 levelObject.skinRend.SetBlendShapeWeight(swollblendKey, value);
             }, () =>
