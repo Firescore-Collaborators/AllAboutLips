@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class LevelEndManager : MonoBehaviour
 {
-    LevelObject levelObject;
-    public GameObject confetti, sparkles,hearts;
+    public LevelObject levelObject;
+    public GameObject confetti, sparkles, hearts;
     public int smileBlendKey = 10;
     void OnEnable()
     {
@@ -14,12 +14,12 @@ public class LevelEndManager : MonoBehaviour
 
     void Init()
     {
-        levelObject = GameManager.Instance.levelObject;
+        //levelObject = GameManager.Instance.levelObject;
         InvokeRepeating("Blink", 2, 5);
         MainCameraController.instance.SetCurrentCamera("Default");
         Timer.Delay(1f, () =>
         {
-            confetti.SetActive(true);
+            //confetti.SetActive(true);
         });
 
         Timer.Delay(1.5f, () =>
@@ -47,16 +47,22 @@ public class LevelEndManager : MonoBehaviour
 
     void PlayCharacterAnim()
     {
-        DisableCharacterRig();
-        levelObject.characterAnim.CrossFade("Dance", 1f);
-        Timer.Delay(2,()=>
+        levelObject.characterAnim.SetLayerWeight(1,100);
+        levelObject.characterAnim.SetBool("final", true);
+        MainCameraController.instance.SetCurrentCamera("Final Camera");
+        Timer.Delay(2, () =>
         {
             hearts.SetActive(true);
         });
 
-        Timer.Delay(5f,()=>
+        Timer.Delay(5f, () =>
         {
             hearts.SetActive(false);
+        });
+        Timer.Delay(1.2f, () =>
+        {
+            DisableCharacterRig();
+
         });
     }
 
