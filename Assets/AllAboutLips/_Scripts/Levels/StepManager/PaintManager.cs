@@ -84,14 +84,14 @@ public class PaintManager : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0))
         {
-            scrollRect.gameObject.SetActive(true);
+            //scrollRect.gameObject.SetActive(true);
             lipstick.OnMouseState(false);
         }
 
         if (Input.GetMouseButtonDown(0))
         {
             ftue.SetActive(false);
-            scrollRect.gameObject.SetActive(false);
+            //scrollRect.gameObject.SetActive(false);
             lipstick.OnMouseState(true);
         }
     }

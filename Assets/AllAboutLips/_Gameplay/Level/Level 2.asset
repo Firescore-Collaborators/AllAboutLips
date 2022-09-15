@@ -18,5 +18,5 @@ MonoBehaviour:
   steps:
   - {fileID: 11400000, guid: d08ffb868ab181148a8c4cb1da52c8bc, type: 2}
   - {fileID: 11400000, guid: deeb2b1e1e4eae040b28c49019d71c22, type: 2}
-  hair: {r: 0.066278934, g: 1, b: 0, a: 1}
-  wall: {r: 0.9528302, g: 0.65653133, b: 0.05842829, a: 1}
+  hair: {r: 1, g: 0, b: 0, a: 1}
+  wall: {r: 0.6564169, g: 0.73038816, b: 0.9339623, a: 1}

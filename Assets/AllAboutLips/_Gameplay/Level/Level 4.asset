@@ -19,5 +19,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d08ffb868ab181148a8c4cb1da52c8bc, type: 2}
   - {fileID: 11400000, guid: deeb2b1e1e4eae040b28c49019d71c22, type: 2}
   - {fileID: 11400000, guid: 932468b2c2246df41ab386774b652718, type: 2}
-  hair: {r: 1, g: 1, b: 1, a: 1}
-  wall: {r: 0, g: 0, b: 0, a: 1}
+  hair: {r: 0.94509804, g: 0.3882353, b: 0.56078434, a: 1}
+  wall: {r: 0, g: 1, b: 0.47640514, a: 1}
