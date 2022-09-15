@@ -12,7 +12,7 @@ public class StencilManager : MonoBehaviour
     public ScrollRect scrollRect;
     public GameObject paintButtonPrefab;
     public LipstickData lipstick;
-    public GameObject button;
+    public GameObject button,ftue;
     public GameObject stencil;
     LevelObject levelObject;
     public List<GameObject> paintButton = new List<GameObject>();
@@ -206,6 +206,7 @@ public class StencilManager : MonoBehaviour
         {
             scrollRect.gameObject.SetActive(false);
             lipstick.OnMouseState(true);
+            ftue.SetActive(false);
         }
 
         if (Input.GetMouseButtonUp(0))

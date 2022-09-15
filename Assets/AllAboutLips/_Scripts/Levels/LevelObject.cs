@@ -9,7 +9,7 @@ public class LevelObject : MonoBehaviour
     public P3dPaintableTexture lipsPaintable;
     public FracturedMesh fracturedMesh;
     public GameObject stencil;
-    public SkinnedMeshRenderer skinRend;
+    public SkinnedMeshRenderer skinRend, hair;
     public ObjectRotateInterpolate objectRotate;
     public Rig rig;
     public Animator characterAnim;
@@ -17,5 +17,6 @@ public class LevelObject : MonoBehaviour
     void Start()
     {
         fracturedMesh.Init();
+        hair.materials[0].SetColor("_BaseColor", ((LipLevelSO)(GameManager.Instance.CurrentLevel)).hair);
     }
 }

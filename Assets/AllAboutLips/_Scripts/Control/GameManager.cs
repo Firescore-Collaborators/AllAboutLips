@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
     }
 
     public Transform lvlObjSpawnPoint;
+    public LevelStartManager levelStartManager;
     public LevelObject levelObject;
     public GameStepState currentStepState;
 
@@ -73,6 +74,7 @@ public class GameManager : MonoBehaviour
         currentStepIndex = 0;
         LoadLevelObject();
         CurrentLevel.OnLevelStart();
+        levelStartManager.Init();
         BeginStep();
     }
 

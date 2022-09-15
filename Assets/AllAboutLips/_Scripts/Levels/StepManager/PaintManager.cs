@@ -9,7 +9,7 @@ public class PaintManager : MonoBehaviour
     public Transform paintPanel;
     public ScrollRect scrollRect;
     public GameObject paintButtonPrefab;
-    public GameObject holdIcon;
+    public GameObject  ftue;
 
     public LipstickData lipstick;
     public List<GameObject> paintButton = new List<GameObject>();
@@ -90,8 +90,8 @@ public class PaintManager : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
+            ftue.SetActive(false);
             scrollRect.gameObject.SetActive(false);
-            holdIcon.SetActive(false);
             lipstick.OnMouseState(true);
         }
     }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class LevelEndManager : MonoBehaviour
 {
     LevelObject levelObject;
-    public GameObject confetti, sparkles, hearts;
+    public GameObject confetti, sparkles, hearts,levelComplete;
     public int smileBlendKey = 10;
     void OnEnable()
     {
@@ -36,6 +36,7 @@ public class LevelEndManager : MonoBehaviour
 
         Timer.Delay(5f, () =>
         {
+            Instantiate(levelComplete);
             //MainCameraController.instance.SetCurrentCamera("Final Camera");
             //     LerpFloatValue.instance.LerpValue(0, 60, 0.7f, (var) =>
             //     {
@@ -58,9 +59,6 @@ public class LevelEndManager : MonoBehaviour
         {
             hearts.SetActive(false);
         });
-        // Timer.Delay(1.2f, () =>
-        // {
-        // });
     }
 
     void DisableCharacterRig()

@@ -20,7 +20,7 @@ public class SuckerManager : MonoBehaviour
     public int swollblendKey = 19, poutBlendkey = 20, pullBlendKey = 21, expressionBlendKey = 8, blinkBlendKey = 1, chinSuckBlendKey = 24;
     int loopCount;
     public bool isFailVideo;
-
+    public GameObject placeFute, TapFtue, removeFtue;
     void OnEnable()
     {
         Init();
@@ -36,6 +36,10 @@ public class SuckerManager : MonoBehaviour
         suckerTool.transform.position = suckerStartPos.position;
         LerpObjectLocalRotation.instance.LerpObject(levelObject.objectRotate.transform, Quaternion.Euler(Vector3.zero), 0.3f);
         InvokeRepeating("Blink", 2, 5);
+        Timer.Delay(1.5f,()=>
+        {
+            placeFute.SetActive(true);
+        });
         //levelObject.objectRotate.transform.localRotation = Quaternion.Euler(Vector3.zero);
     }
 
@@ -205,7 +209,11 @@ public class SuckerManager : MonoBehaviour
             levelObject.skinRend.SetBlendShapeWeight(poutBlendkey, value);
         });
         LerpObjectPosition.instance.LerpObject(suckerTool.transform, suckFinalPos.position, 0.25f);
-
+        TapFtue.SetActive(false);
+        Timer.Delay(1.5f,()=>
+        {
+            removeFtue.SetActive(true);
+        });
         suckEnable = false;
         stepHeader.text = "Remove the pucker";
         suckerTool.GetComponent<SuckerTool>().checkForPull = true;
@@ -222,6 +230,7 @@ public class SuckerManager : MonoBehaviour
 
     public void SuckEnd()
     {
+        removeFtue.SetActive(false);
         stepHeader.text = "";
         loopCount = 0;
         LipsPull();

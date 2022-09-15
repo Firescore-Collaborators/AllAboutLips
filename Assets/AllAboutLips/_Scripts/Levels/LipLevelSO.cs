@@ -5,5 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "LipLevelSO", menuName = "AllAboutLip/LevelSO", order = 1)]
 public class LipLevelSO : LevelSO
 {
-    
+    public Color hair, wall;
+
 }

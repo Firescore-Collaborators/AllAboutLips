@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e0ff9463c1de2c0408f8ab7c52cb97b5, type: 3}
-  m_Name: LipLevelSO
+  m_Name: Level 4
   m_EditorClassIdentifier: 
   levelObject: {fileID: 4762156582298237386, guid: 0eb0b40b59678b241a016dfe4223c12c,
     type: 3}
@@ -18,3 +18,6 @@ MonoBehaviour:
   steps:
   - {fileID: 11400000, guid: d08ffb868ab181148a8c4cb1da52c8bc, type: 2}
   - {fileID: 11400000, guid: deeb2b1e1e4eae040b28c49019d71c22, type: 2}
+  - {fileID: 11400000, guid: 932468b2c2246df41ab386774b652718, type: 2}
+  hair: {r: 1, g: 1, b: 1, a: 1}
+  wall: {r: 0, g: 0, b: 0, a: 1}

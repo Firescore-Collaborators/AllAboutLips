@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0ff9463c1de2c0408f8ab7c52cb97b5, type: 3}
+  m_Name: Level 3
+  m_EditorClassIdentifier: 
+  levelObject: {fileID: 4762156582298237386, guid: 0eb0b40b59678b241a016dfe4223c12c,
+    type: 3}
+  levelType: 1
+  steps:
+  - {fileID: 11400000, guid: d08ffb868ab181148a8c4cb1da52c8bc, type: 2}
+  - {fileID: 11400000, guid: deeb2b1e1e4eae040b28c49019d71c22, type: 2}
+  - {fileID: 11400000, guid: 3b94deec15205a54b98790b2d26f0666, type: 2}
+  hair: {r: 0, g: 0.43849897, b: 1, a: 1}
+  wall: {r: 0.8113208, g: 0.11098258, b: 0.5042232, a: 1}

@@ -25,9 +25,15 @@ public class SuckerTool : MonoBehaviour
         if (other.CompareTag("SuckerPlace"))
         {
             if (!checkForEnter) return;
+
             checkForEnter = false;
             GetComponent<ObjectFollowCollider>().Disable();
             GameManager.Instance.GetComponent<SuckerStepState>().stepManager.GetComponent<SuckerManager>().Pout();
+            GameManager.Instance.GetComponent<SuckerStepState>().stepManager.GetComponent<SuckerManager>().placeFute.SetActive(false);
+            Timer.Delay(1.5f,()=>
+            {
+                GameManager.Instance.GetComponent<SuckerStepState>().stepManager.GetComponent<SuckerManager>().TapFtue.SetActive(true);
+            });
             LerpObjectPosition.instance.LerpObject(transform, poutPos.position, 1, () =>
             {
                 GameManager.Instance.GetComponent<SuckerStepState>().stepManager.GetComponent<SuckerManager>().SuckStart();
