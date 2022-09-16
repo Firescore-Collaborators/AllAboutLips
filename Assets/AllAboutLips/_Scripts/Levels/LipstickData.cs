@@ -40,8 +40,8 @@ public class LipstickData : MonoBehaviour
 
     public void OnMouseState(bool state)
     {
-        objectFollow.follow = state;
         rotate.enabled = state;
+        rotate.held = state;
         for (int i = 0; i < paintSpheres.Count; i++)
         {
             paintSpheres[i].gameObject.SetActive(state);

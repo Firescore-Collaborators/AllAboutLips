@@ -214,7 +214,6 @@ public class StencilManager : MonoBehaviour
             //scrollRect.gameObject.SetActive(true);
             lipstick.OnMouseState(false);
         }
-
     }
 }
 
