@@ -16,8 +16,10 @@ MonoBehaviour:
     type: 3}
   levelType: 1
   steps:
-  - {fileID: 11400000, guid: 7b67902e3d145e34085a653392f80f10, type: 2}
   - {fileID: 11400000, guid: d08ffb868ab181148a8c4cb1da52c8bc, type: 2}
   - {fileID: 11400000, guid: deeb2b1e1e4eae040b28c49019d71c22, type: 2}
   hair: {r: 1, g: 0, b: 0, a: 1}
   wall: {r: 0.6564169, g: 0.73038816, b: 0.9339623, a: 1}
+  floor: {r: 0.60784316, g: 0.5294118, b: 0.6509804, a: 1}
+  dress: {r: 0.72300005, g: 0.72300005, b: 0.72300005, a: 1}
+  hairstyle: 1

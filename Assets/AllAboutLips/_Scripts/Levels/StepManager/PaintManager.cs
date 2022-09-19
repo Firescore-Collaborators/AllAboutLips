@@ -9,7 +9,7 @@ public class PaintManager : MonoBehaviour
     public Transform paintPanel;
     public ScrollRect scrollRect;
     public GameObject paintButtonPrefab;
-    public GameObject  ftue;
+    public GameObject selectFtue, infityFtue;
 
     public LipstickData lipstick;
     public List<GameObject> paintButton = new List<GameObject>();
@@ -38,6 +38,7 @@ public class PaintManager : MonoBehaviour
         SpawnButtons();
         scrollRect.horizontalNormalizedPosition = 0;
         Canvas.ForceUpdateCanvases();
+        selectFtue.SetActive(true);
     }
     void SpawnButtons()
     {
@@ -73,6 +74,8 @@ public class PaintManager : MonoBehaviour
 
         //Change paint color
         lipstick.SetColor(color);
+        selectFtue.SetActive(false);
+        infityFtue.SetActive(true);
     }
 
     void Update()
@@ -90,7 +93,7 @@ public class PaintManager : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            ftue.SetActive(false);
+            infityFtue.SetActive(false);
             //scrollRect.gameObject.SetActive(false);
             lipstick.OnMouseState(true);
         }

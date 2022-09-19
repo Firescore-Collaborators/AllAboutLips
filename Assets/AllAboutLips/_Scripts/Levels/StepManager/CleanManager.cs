@@ -11,7 +11,7 @@ public class CleanManager : MonoBehaviour
     public GameObject laserParticle;
     public Image progressBar;
     public float particleMaxCount;
-
+    public GameObject ftue;
     bool held;
 
 
@@ -38,6 +38,7 @@ public class CleanManager : MonoBehaviour
         {
             held = true;
             OnLaserClickState(true);
+            ftue.SetActive(false);
         }
         if (Input.GetMouseButtonUp(0))
         {

@@ -12,7 +12,7 @@ public class StencilManager : MonoBehaviour
     public ScrollRect scrollRect;
     public GameObject paintButtonPrefab;
     public LipstickData lipstick;
-    public GameObject button,ftue;
+    public GameObject button, selectFtue, infinityFtue;
     public GameObject stencil;
     LevelObject levelObject;
     public List<GameObject> paintButton = new List<GameObject>();
@@ -44,6 +44,7 @@ public class StencilManager : MonoBehaviour
         SpawnButtons();
         scrollRect.horizontalNormalizedPosition = 0;
         Canvas.ForceUpdateCanvases();
+        selectFtue.SetActive(true);
         //AddOverlay();
         // levelObject.paintable.enabled = false;
         // levelObject.paintable2.enabled = true;
@@ -102,6 +103,8 @@ public class StencilManager : MonoBehaviour
 
         //Change paint color
         lipstick.SetColor(color);
+        selectFtue.SetActive(false);
+        infinityFtue.SetActive(true);
         //paintSphere.Color = color;
     }
     void ApplyMask()
@@ -206,7 +209,7 @@ public class StencilManager : MonoBehaviour
         {
             //scrollRect.gameObject.SetActive(false);
             lipstick.OnMouseState(true);
-            ftue.SetActive(false);
+            infinityFtue.SetActive(false);
         }
 
         if (Input.GetMouseButtonUp(0))

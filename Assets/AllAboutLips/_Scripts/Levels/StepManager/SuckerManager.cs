@@ -301,7 +301,7 @@ public class SuckerManager : MonoBehaviour
 
     void LevelEnd()
     {
-        Timer.Delay(3f, () =>
+        Timer.Delay(1f, () =>
         {
             GameManager.Instance.NextStep();
         });

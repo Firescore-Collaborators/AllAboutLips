@@ -23,9 +23,18 @@ public class ObjectFollowOnHit : MonoBehaviour
         MoveAlongCollider();
     }
 
+
     void SetInput()
     {
+#if UNITY_EDITOR
         if (EventSystem.current.IsPointerOverGameObject()) { return; }
+#endif
+
+#if UNITY_ANDROID
+        if (EventSystem.current.IsPointerOverGameObject(0)) { return; }
+#endif
+
+
         if (Input.GetMouseButtonDown(0))
         {
             held = true;
