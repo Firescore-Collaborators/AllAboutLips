@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
-using Tabtale.TTPlugins;
+//using Tabtale.TTPlugins;
 
 public class LevelManager : MonoBehaviour
 {
@@ -11,7 +11,7 @@ public class LevelManager : MonoBehaviour
     public LevelContainer levelContainer;
 
     private void Awake() {
-        TTPCore.Setup();
+        //TTPCore.Setup();
     }
     void Start()
     {
