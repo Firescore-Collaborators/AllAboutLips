@@ -6049,6 +6049,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1460002758}
     m_Modifications:
+    - target: {fileID: 2307210001395181745, guid: 0eb0b40b59678b241a016dfe4223c12c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166036574175504383, guid: 0eb0b40b59678b241a016dfe4223c12c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4637482423717020413, guid: 0eb0b40b59678b241a016dfe4223c12c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4762156582298237386, guid: 0eb0b40b59678b241a016dfe4223c12c,
         type: 3}
       propertyPath: m_Name
@@ -6114,6 +6129,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8989095282431629282, guid: 0eb0b40b59678b241a016dfe4223c12c,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -655693864317802327, guid: bb85fdb95abc7bf4089d2c27aed8a778,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0eb0b40b59678b241a016dfe4223c12c, type: 3}
 --- !u!4 &961304112 stripped

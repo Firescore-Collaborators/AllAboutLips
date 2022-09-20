@@ -25,6 +25,10 @@ public class CleanManager : MonoBehaviour
         Init();
     }
 
+    void OnDisable() {
+        laserController.fracturedMesh.gameObject.SetActive(false);
+    }
+
     void Init()
     {
         levelObject.fracturedMesh.gameObject.SetActive(true);
@@ -55,7 +59,7 @@ public class CleanManager : MonoBehaviour
 
         progressBar.fillAmount = Remap.remap(levelObject.fracturedMesh.fracturedMesh.Count, 0, particleMaxCount, 1, 0);
 
-        if (progressBar.fillAmount >= 1f)
+        if (progressBar.fillAmount >= 0.98f)
         {
             GameManager.Instance.NextStep();
         }

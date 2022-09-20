@@ -28,9 +28,8 @@ public class ObjectFollowOnHit : MonoBehaviour
     {
 #if UNITY_EDITOR
         if (EventSystem.current.IsPointerOverGameObject()) { return; }
-#endif
 
-#if UNITY_ANDROID
+#elif UNITY_ANDROID
         if (EventSystem.current.IsPointerOverGameObject(0)) { return; }
 #endif
 
